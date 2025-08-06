@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Bangs Hairstyle Hairpin - Fashion.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wine: '#722f37',
+                        burgundy: '#800020',
+                        rosegold: '#e8b4b8',
+                        krem: '#f5f5dc',
+                        aksen: '#ffffff',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-slide-in-right {
+            animation: slideInRight 0.5s ease-out forwards;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-gallery img:hover {
+            transform: scale(1.03);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.1), rgba(232, 180, 184, 0.1));
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        .social-proof-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            max-width: 350px;
+            display: none;
+        }
+        
+        .social-proof-popup.show {
+            display: block;
+        }
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            display: none;
+        }
+        
+        .sticky-cta.show {
+            display: block;
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: linear-gradient(45deg, #722f37, #800020);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+            transform: rotate(5deg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .promo-box {
+            background: linear-gradient(135deg, rgba(245, 245, 220, 0.3), rgba(232, 180, 184, 0.3));
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #722f37, #800020, #e8b4b8);
+        }
+    </style>
+</head>
+<body class="bg-krem font-body text-gray-800">
+    <!-- Social Proof Popup -->
+    <div class="social-proof-popup" id="socialProofPopup">
+        <div class="bg-white rounded-xl shadow-xl p-4 flex items-start glassmorphism">
+            <div class="w-10 h-10 rounded-full bg-rosegold flex items-center justify-center mr-3 flex-shrink-0">
+                <span class="font-bold text-white text-sm" id="customerInitial">V</span>
+            </div>
+            <div>
+                <p class="font-medium text-gray-800" id="socialProofText"></p>
+                <p class="text-xs text-gray-500 mt-1" id="socialProofTime"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="#orderForm" class="bg-wine hover:bg-burgundy text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105 flex items-center">
+            <i class="fas fa-shopping-cart mr-2"></i> PESAN SEKARANG
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-30">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold font-heading text-burgundy">FASHION.ID</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#hero" class="font-medium hover:text-burgundy transition">Beranda</a>
+                <a href="#features" class="font-medium hover:text-burgundy transition">Keunggulan</a>
+                <a href="#gallery" class="font-medium hover:text-burgundy transition">Galeri</a>
+                <a href="#testimonials" class="font-medium hover:text-burgundy transition">Testimoni</a>
+                <a href="#orderForm" class="font-medium hover:text-burgundy transition">Pesan</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobileMenuButton" class="text-burgundy">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg absolute w-full z-20">
+            <div class="flex flex-col py-4">
+                <a href="#hero" class="px-6 py-2 font-medium hover:bg-rosegold hover:text-white">Beranda</a>
+                <a href="#features" class="px-6 py-2 font-medium hover:bg-rosegold hover:text-white">Keunggulan</a>
+                <a href="#gallery" class="px-6 py-2 font-medium hover:bg-rosegold hover:text-white">Galeri</a>
+                <a href="#testimonials" class="px-6 py-2 font-medium hover:bg-rosegold hover:text-white">Testimoni</a>
+                <a href="#orderForm" class="px-6 py-2 font-medium hover:bg-rosegold hover:text-white">Pesan</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative py-16 md:py-24 bg-gradient-to-br from-rosegold/20 to-burgundy/20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-burgundy mb-4">
+                    Double Bangs Hairstyle Hairpin
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-6">
+                    Tampil Stylish dengan Gaya Rambut Simpel nan Elegan
+                </p>
+                <p class="text-lg mb-8 max-w-xl">
+                    Jepitan rambut premium dengan desain kepang unik yang membuat tampilan poni Anda rapi dan menawan sepanjang hari.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-rosegold flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <span>Jepitan Kuat</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-rosegold flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <span>Nyaman Seharian</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-rosegold flex items-center justify-center mr-3">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <span>Cocok Semua Rambut</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <p class="text-sm text-gray-500">Harga Normal</p>
+                        <p class="text-xl font-bold text-gray-900 line-through">Rp 298.470</p>
+                        <p class="text-2xl font-bold text-burgundy">Rp 149.235</p>
+                        <p class="text-sm text-rosegold font-semibold">BUY 2 GET 1 FREE</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4">
+                        <p class="text-sm text-gray-500">Harga Normal</p>
+                        <p class="text-xl font-bold text-gray-900 line-through">Rp 313.450</p>
+                        <p class="text-2xl font-bold text-burgundy">Rp 156.725</p>
+                        <p class="text-sm text-rosegold font-semibold">BUY 3 GET 2 FREE</p>
+                    </div>
+                </div>
+                
+                <a href="#orderForm" class="inline-block bg-burgundy hover:bg-wine text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
+                    <i class="fas fa-shopping-cart mr-2"></i> PESAN SEKARANG
+                </a>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center animate-fade-in">
+                <div class="relative">
+                    <img src="https://cdn.hotishop.com/image/2022/12/3abe1fdcf3674e295c751a98fc60d34f66d9dcee4eaafd25d99f60dd4a7ee162-400.jpeg" 
+                         alt="Double Bangs Hairstyle Hairpin" 
+                         class="rounded-xl shadow-xl w-full max-w-md">
+                    <div class="absolute -bottom-4 -right-4 bg-rosegold text-white px-4 py-2 rounded-full font-bold">
+                        HOT ITEM
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-burgundy mb-4">
+                    Mengapa Double Bangs Hairpin?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Produk unggulan dengan kualitas premium yang dirancang khusus untuk penampilan rambut yang sempurna
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="feature-card bg-krem/30 rounded-xl p-6 border border-rosegold/20">
+                    <div class="w-16 h-16 rounded-full bg-rosegold/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-star text-rosegold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Desain Kekinian</h3>
+                    <p class="text-gray-600">Desain kepang unik yang membuat Anda tampil stylish dan berbeda dari yang lain.</p>
+                </div>
+                
+                <div class="feature-card bg-krem/30 rounded-xl p-6 border border-rosegold/20">
+                    <div class="w-16 h-16 rounded-full bg-rosegold/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-rosegold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Jepitan Kuat</h3>
+                    <p class="text-gray-600">Jepitan yang kuat dan tahan lama, tidak mudah lepas meski seharian beraktivitas.</p>
+                </div>
+                
+                <div class="feature-card bg-krem/30 rounded-xl p-6 border border-rosegold/20">
+                    <div class="w-16 h-16 rounded-full bg-rosegold/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-heart text-rosegold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Nyaman Dipakai</h3>
+                    <p class="text-gray-600">Material resin premium yang ringan dan nyaman, tidak membuat rambut kusut.</p>
+                </div>
+                
+                <div class="feature-card bg-krem/30 rounded-xl p-6 border border-rosegold/20">
+                    <div class="w-16 h-16 rounded-full bg-rosegold/20 flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-rosegold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Cocok Untuk Semua</h3>
+                    <p class="text-gray-600">Cocok untuk remaja, dewasa, hingga ibu muda dengan semua jenis rambut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-krem/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-burgundy mb-4">
+                    Galeri Produk
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Lihat bagaimana Double Bangs Hairpin membuat penampilan Anda semakin memukau
+                </p>
+            </div>
+            
+            <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="https://cdn.hotishop.com/image/2022/12/28aa0965bdf41092484cd360e928b375e3346da5f98a6a76c85dc5be3b2b989d.gif" 
+                         alt="Demo Double Bangs Hairpin" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <div class="product-gallery">
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/f980102349eb9ae4cc79715e9018e4fe1d7bd8ab5e5088bea75f07ec28e7b70a-500.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/f980102349eb9ae4cc79715e9018e4fe1d7bd8ab5e5088bea75f07ec28e7b70a-500.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/97292788c6629519318fde66180d488220dc50a3fa4a7cd7e549b74557f804d6-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/97292788c6629519318fde66180d488220dc50a3fa4a7cd7e549b74557f804d6-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/4cd79c4f0b4704ca5e0cfb9136eaa7484680dab4cdc79b2114598b43063924b1-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/4cd79c4f0b4704ca5e0cfb9136eaa7484680dab4cdc79b2114598b43063924b1-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/53f6abfbced60fd55c20a5487a87a0f2324b21febb0758b280caada73ec05c12-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/53f6abfbced60fd55c20a5487a87a0f2324b21febb0758b280caada73ec05c12-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/ec7c3ac9187a662a39cc8d0189fdf7b515ccc5c09a13c7a81d9bb54ca228b343-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/ec7c3ac9187a662a39cc8d0189fdf7b515ccc5c09a13c7a81d9bb54ca228b343-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/cbc9e8323aa0d61de39361262bb2ac34eb2bffebc166aa7701431d2e77949100-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/cbc9e8323aa0d61de39361262bb2ac34eb2bffebc166aa7701431d2e77949100-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/87f792c244f1a0dce55d63352a8a91b4674ad516cfc575062c912ad162057adc-400.png')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/87f792c244f1a0dce55d63352a8a91b4674ad516cfc575062c912ad162057adc-400.png" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/11e301f40a250432a9324c89fd8cc24b3ba59b6db6f5349b594b5d498238d4a2-400.jpeg')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/11e301f40a250432a9324c89fd8cc24b3ba59b6db6f5349b594b5d498238d4a2-400.jpeg" alt="Double Bangs Hairpin">
+                </div>
+                <div class="cursor-pointer" onclick="openLightbox('https://cdn.hotishop.com/image/2022/12/5a55c89717d7f201a1680d619b584e8a823a7a2adffe7d100afc95adfa8a1a70.jpeg')">
+                    <img src="https://cdn.hotishop.com/image/2022/12/5a55c89717d7f201a1680d619b584e8a823a7a2adffe7d100afc95adfa8a1a70.jpeg" alt="Double Bangs Hairpin">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-burgundy mb-4">
+                    Apa Kata Pelanggan Kami?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Ribuan wanita sudah merasakan manfaat Double Bangs Hairpin
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pinimg.com/736x/0e/7c/bb/0e7cbb46674d12bb9729a9abbf2403ff.jpg" 
+                             alt="triwulan" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold font-heading">triwulan</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-4">
+                        "Lucu banget! Jepitnya bikin poni jadi lebih rapi & stylish 😍"
+                    </p>
+                    <div class="cursor-pointer" onclick="openLightbox('https://down-id.img.susercontent.com/file/id-11134103-22070-rqhvera9nvevca.webp')">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134103-22070-rqhvera9nvevca.webp" 
+                             alt="Review triwulan" 
+                             class="w-20 h-20 rounded-lg object-cover">
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pinimg.com/736x/65/08/be/6508be758ff65cb0c9c513fb779f52f9.jpg" 
+                             alt="destrichi" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold font-heading">destrichi</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-4">
+                        "Cocok buat yang suka tampil beda tapi tetap simpel ✨"
+                    </p>
+                    <div class="cursor-pointer" onclick="openLightbox('https://down-id.img.susercontent.com/file/id-11134103-7qul4-ljwklk3k71e706.webp')">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134103-7qul4-ljwklk3k71e706.webp" 
+                             alt="Review destrichi" 
+                             class="w-20 h-20 rounded-lg object-cover">
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <img src="https://i.pinimg.com/736x/e1/1f/10/e11f10ad3a1b8c4026fb323993258272.jpg" 
+                             alt="aliciatrsaa" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-bold font-heading">aliciatrsaa</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mb-4">
+                        "Wajib punya! Bikin look makin manis tanpa ribet 💖"
+                    </p>
+                    <div class="cursor-pointer" onclick="openLightbox('https://down-id.img.susercontent.com/file/id-11134103-7r98v-lonrgeexogor26.webp')">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134103-7r98v-lonrgeexogor26.webp" 
+                             alt="Review aliciatrsaa" 
+                             class="w-20 h-20 rounded-lg object-cover">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <div class="inline-flex items-center bg-burgundy/10 px-6 py-3 rounded-full">
+                    <i class="fas fa-award text-burgundy text-xl mr-2"></i>
+                    <span class="font-bold text-burgundy">4.9/5.0 Rating dari 2.500+ Pembeli</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16 bg-gradient-to-br from-rosegold/20 to-burgundy/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-burgundy mb-4">
+                    Promo Spesial Hari Ini
+                </h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Dapatkan harga terbaik untuk Double Bangs Hairpin sebelum promo berakhir!
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="promo-box p-6 relative">
+                    <div class="promo-badge">TERPOPULER</div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Paket Hemat</h3>
+                    <p class="text-gray-600 mb-4">Belanja lebih hemat dengan paket ini</p>
+                    <div class="mb-4">
+                        <p class="text-gray-500 line-through">Rp 298.470</p>
+                        <p class="text-3xl font-bold text-burgundy">Rp 149.235</p>
+                        <p class="text-rosegold font-semibold">BUY 2 GET 1 FREE</p>
+                    </div>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Dapatkan 3 pcs hairpin</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Bonus pouch eksklusif</span>
+                        </li>
+                    </ul>
+                    <a href="#orderForm" class="block w-full bg-burgundy hover:bg-wine text-white text-center font-bold py-3 px-6 rounded-full shadow transition">
+                        PESAN PAKET INI
+                    </a>
+                </div>
+                
+                <div class="promo-box p-6 relative">
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Paket Keluarga</h3>
+                    <p class="text-gray-600 mb-4">Sempurna untuk hadiah atau koleksi</p>
+                    <div class="mb-4">
+                        <p class="text-gray-500 line-through">Rp 313.450</p>
+                        <p class="text-3xl font-bold text-burgundy">Rp 156.725</p>
+                        <p class="text-rosegold font-semibold">BUY 3 GET 2 FREE</p>
+                    </div>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Dapatkan 5 pcs hairpin</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Bonus pouch eksklusif</span>
+                        </li>
+                    </ul>
+                    <a href="#orderForm" class="block w-full bg-burgundy hover:bg-wine text-white text-center font-bold py-3 px-6 rounded-full shadow transition">
+                        PESAN PAKET INI
+                    </a>
+                </div>
+                
+                <div class="promo-box p-6 relative">
+                    <div class="promo-badge">PALING HEMAT</div>
+                    <h3 class="text-xl font-bold font-heading text-burgundy mb-2">Paket Super</h3>
+                    <p class="text-gray-600 mb-4">Harga termurah per pcs</p>
+                    <div class="mb-4">
+                        <p class="text-gray-500 line-through">Rp 333.520</p>
+                        <p class="text-3xl font-bold text-burgundy">Rp 166.760</p>
+                        <p class="text-rosegold font-semibold">BUY 5 GET 3 FREE</p>
+                    </div>
+                    <ul class="mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Dapatkan 8 pcs hairpin</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-rosegold mr-2"></i>
+                            <span>Bonus 2 pouch eksklusif</span>
+                        </li>
+                    </ul>
+                    <a href="#orderForm" class="block w-full bg-burgundy hover:bg-wine text-white text-center font-bold py-3 px-6 rounded-full shadow transition">
+                        PESAN PAKET INI
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white rounded-xl shadow-lg p-6 max-w-3xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="w-12 h-12 rounded-full bg-rosegold/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-gift text-rosegold text-xl"></i>
+                        </div>
+                        <p class="font-bold">Gratis Ongkir ke Seluruh Indonesia</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-rosegold/20 flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-rosegold text-xl"></i>
+                        </div>
+                        <p class="font-bold">Garansi 100% Uang Kembali</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="orderForm" class="py-16 bg-krem/30">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="glassmorphism rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="bg-burgundy py-6 px-8">
+                        <h2 class="text-2xl md:text-3xl font-bold font-heading text-white text-center">
+                            Form Pemesanan Double Bangs Hairpin
+                        </h2>
+                    </div>
+                    
+                    <div class="p-6 md:p-8">
+                        <!-- OrderOnline Embed Code -->
+                        <div class="ooef">
+                            <form class="orderonline-embed-form" data-username="nava" data-product-slug="double-bangs-hairstyle-hairpin" data-product-id="689342985c692a12d508fd39" id="oo-embed-form-double-bangs-hairstyle-hairpin-753" data-origin="orderonline">
+                                <div class="ooef-loader">
+                                    <style>
+                                        .ooef-loader {
+                                            visibility: hidden;
+                                            opacity: 0;
+                                            position: absolute;
+                                            left: 0;
+                                            right: 0;
+                                            top: 0;
+                                            bottom: 0;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            flex-direction: column;
+                                            animation: ooLoadingIn 10s ease;
+                                            -webkit-animation: ooLoadingIn 10s ease;
+                                            animation-fill-mode: forwards;
+                                            overflow: hidden
+                                        }
+                                        
+                                        @keyframes ooLoadingIn {
+                                            0% {
+                                                visibility: hidden;
+                                                opacity: 0
+                                            }
+                                            20% {
+                                                visibility: visible;
+                                                opacity: 0
+                                            }
+                                            100% {
+                                                visibility: visible;
+                                                opacity: 1
+                                            }
+                                        }
+                                        
+                                        @-webkit-keyframes ooLoadingIn {
+                                            0% {
+                                                visibility: hidden;
+                                                opacity: 0
+                                            }
+                                            20% {
+                                                visibility: visible;
+                                                opacity: 0
+                                            }
+                                            100% {
+                                                visibility: visible;
+                                                opacity: 1
+                                            }
+                                        }
+                                        
+                                        .ooef-loader>div,
+                                        .ooef-loader>div:after {
+                                            border-radius: 50%;
+                                            width: 2.5rem;
+                                            height: 2.5rem
+                                        }
+                                        
+                                        .ooef-loader>div {
+                                            font-size: 10px;
+                                            position: relative;
+                                            text-indent: -9999em;
+                                            border: .25rem solid #f5f5f5;
+                                            border-left: .25rem solid #55c4cf;
+                                            -webkit-transform: translateZ(0);
+                                            -ms-transform: translateZ(0);
+                                            transform: translateZ(0);
+                                            -webkit-animation: ooLoading 1.1s infinite linear;
+                                            animation: ooLoading 1.1s infinite linear
+                                        }
+                                        
+                                        .ooef-loader.error>div {
+                                            border-left: .25rem solid #ff4500;
+                                            animation-duration: 5s
+                                        }
+                                        
+                                        @-webkit-keyframes ooLoading {
+                                            0% {
+                                                -webkit-transform: rotate(0);
+                                                transform: rotate(0)
+                                            }
+                                            100% {
+                                                -webkit-transform: rotate(360deg);
+                                                transform: rotate(360deg)
+                                            }
+                                        }
+                                        
+                                        @keyframes ooLoading {
+                                            0% {
+                                                -webkit-transform: rotate(0);
+                                                transform: rotate(0)
+                                            }
+                                            100% {
+                                                -webkit-transform: rotate(360deg);
+                                                transform: rotate(360deg)
+                                            }
+                                        }
+                                    </style>
+                                    <div aria-live="polite" role="status">
+                                        <div>Loading...</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <script>
+                            if (typeof xLogError != 'function') {
+                                var xLogError = function (error) {
+                                    var req = new XMLHttpRequest();
+                                    var payload = JSON.stringify({
+                                        url: document.location.href,
+                                        line: error.line,
+                                        stack: error.stack
+                                    });
+                                    var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error';
+                                    req.open('POST', 'https://api.orderonline.id/log', true);
+                                    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                                    req.send(params);
+                                };
+                            }
+                            
+                            try {
+                                if (typeof xEmbedScript != 'function') {
+                                    var xEmbedScript = function () {
+                                        ! function (w, d, e, v, id, t, s) {
+                                            if (d.getElementById(id)) return;
+                                            t = d.createElement(e);
+                                            t.async = !0;
+                                            t.src = v;
+                                            t.id = id;
+                                            s = d.getElementsByTagName(e)[0];
+                                            s.parentNode.insertBefore(t, s);
+                                        }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.4', 'oo-embed-js');
+                                    };
+                                }
+                                
+                                if (typeof xEmbedInit != 'function') {
+                                    var xEmbedInit = function (w, n) {
+                                        if (w.ooe) return;
+                                        n = w.ooe = function () {
+                                            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                                        };
+                                        if (!w._ooe) w._ooe = n;
+                                        n.push = n;
+                                        n.loaded = !0;
+                                        n.version = '8.0.4';
+                                        n.queue = [];
+                                    };
+                                }
+                                
+                                xEmbedInit(window);
+                                ooe('setup', 'redirect', 'https://nava.orderonline.id');
+                                ooe('init', '5f119cd08dcbdb2737678706', '689342985c692a12d508fd39', '689342985c692a12d508fd3a', 'oo-embed-form-double-bangs-hairstyle-hairpin-753', {
+                                    "mode": "page",
+                                    "action": "Klik untuk pemesanan",
+                                    "title": "Form Pemesanan",
+                                    "triggerPixel": true,
+                                    "triggerGtm": true
+                                });
+                                
+                                if (!window.jQuery) {
+                                    ! function (w, d, e, v, id, t, s) {
+                                        if (d.getElementById(id)) return;
+                                        t = d.createElement(e);
+                                        t.async = !0;
+                                        t.src = v;
+                                        t.id = id;
+                                        t.addEventListener('load', xEmbedScript);
+                                        s = d.getElementsByTagName(e)[0];
+                                        s.parentNode.insertBefore(t, s);
+                                    }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery');
+                                } else {
+                                    xEmbedScript();
+                                }
+                            } catch (e) {
+                                xLogError(e);
+                                throw e;
+                            }
+                        </script>
+                        <!-- End OrderOnline Embed Code -->
+                    </div>
+                    
+                    <div class="p-6 border-t border-rosegold/20">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <i class="fas fa-lock text-burgundy text-2xl mr-3"></i>
+                                <div>
+                                    <p class="font-bold">Pembayaran Aman</p>
+                                    <p class="text-sm text-gray-600">Data Anda dilindungi dengan enkripsi 256-bit</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-burgundy mb-4">
+                    Pertanyaan Umum
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Temukan jawaban untuk pertanyaan yang sering diajukan
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="border border-rosegold/20 rounded-xl overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 bg-white font-bold text-left">
+                        <span>Apakah hairpin ini cocok untuk rambut tebal?</span>
+                        <i class="fas fa-chevron-down text-rosegold"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Ya, Double Bangs Hairpin dirancang khusus dengan jepitan yang kuat sehingga cocok untuk semua jenis rambut, termasuk rambut tebal. Bahan resin premium memastikan jepitan tetap kuat namun tidak merusak rambut.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-rosegold/20 rounded-xl overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 bg-white font-bold text-left">
+                        <span>Berapa lama waktu pengiriman?</span>
+                        <i class="fas fa-chevron-down text-rosegold"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Kami melakukan pengiriman setiap hari. Untuk wilayah Jabodetabek, pesanan biasanya sampai dalam 1-2 hari. Untuk luar Jawa, pengiriman memakan waktu 3-5 hari. Kami juga menyediakan layanan ekspres dengan biaya tambahan.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-rosegold/20 rounded-xl overflow-hidden">
+                    <button class="w-full flex justify-between items-center p-6 bg-white font-bold text-left">
+                        <span>Bagaimana jika produk rusak saat diterima?</span>
+                        <i class="fas fa-chevron-down text-rosegold"></i>
+                    </button>
+                    <div class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">
+                            Kami memberikan garansi 100% uang kembali jika produk rusak saat diterima. Silakan kirim foto produk yang rusak melalui WhatsApp ke 085236699497, dan kami akan segera memproses pengembalian dana atau penggantian produk.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImg" class="lightbox-content">
+    </div>
+
+    <script>
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+        
+        // Close lightbox when clicking outside the image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Social proof popup
+        const customerNames = ['Vina', 'Dina', 'Kartika', 'Lestari', 'Putri', 'Maya Sari', 'Rani', 'Permata', 'Lestari F'];
+        const customerCities = ['Jakarta', 'Surabaya', 'Bandung', 'Medan', 'Bekasi', 'Tangerang', 'Depok', 'Semarang'];
+        
+        function showSocialProof() {
+            const name = customerNames[Math.floor(Math.random() * customerNames.length)];
+            const city = customerCities[Math.floor(Math.random() * customerCities.length)];
+            const minutes = Math.floor(Math.random() * 15) + 1;
+            
+            document.getElementById('customerInitial').textContent = name.charAt(0);
+            document.getElementById('socialProofText').textContent = `${name} dari ${city} baru saja memesan Double Bangs Hairstyle Hairpin`;
+            document.getElementById('socialProofTime').textContent = `${minutes} menit yang lalu`;
+            
+            const popup = document.getElementById('socialProofPopup');
+            popup.classList.add('show', 'animate-slide-in-right');
+            
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Show first social proof after 5 seconds
+        setTimeout(showSocialProof, 5000);
+        
+        // Set interval for social proof
+        setInterval(showSocialProof, 15000);
+        
+        // Sticky CTA
+        window.addEventListener('scroll', function() {
+            const stickyCta = document.getElementById('stickyCta');
+            if (window.scrollY > 300) {
+                stickyCta.classList.add('show');
+            } else {
+                stickyCta.classList.remove('show');
+            }
+        });
+        
+        // Accordion for FAQ
+        const accordionButtons = document.querySelectorAll('.border button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle('hidden');
+                
+                const icon = button.querySelector('i');
+                if (icon.classList.contains('fa-chevron-down')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
